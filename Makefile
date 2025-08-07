@@ -1,0 +1,28 @@
+CC := gcc
+PKG_CONFIG := pkg-config
+PKG_CFLAGS := $(shell $(PKG_CONFIG) --cflags glib-2.0 gtk4 astal-4-4.0)
+PKG_LDFLAGS := $(shell $(PKG_CONFIG) --libs glib-2.0 gtk4 astal-4-4.0)
+CFLAGS := -Wall -Wextra -std=c11 $(PKG_CFLAGS)
+LDFLAGS := $(PKG_LDFLAGS)
+
+SRC_DIR := src
+BUILD_DIR := build
+
+SRC := $(wildcard $(SRC_DIR)/*.c)
+OBJ := $(patsubst $(SRC_DIR)/%.c,$(BUILD_DIR)/%.o,$(SRC))
+BIN := $(BUILD_DIR)/widget
+
+all: $(BIN)
+
+$(BIN): $(OBJ)
+	@mkdir -p $(dir $@)
+	$(CC) $(OBJ) -o $@ $(LDFLAGS)
+
+$(BUILD_DIR)/%.o: $(SRC_DIR)/%.c
+	@mkdir -p $(dir $@)
+	$(CC) $(CFLAGS) -c $< -o $@
+
+clean:
+	rm -rf $(BUILD_DIR)
+
+.PHONY: all clean
