@@ -28,7 +28,6 @@
         buildInputs = [
           pkgs.glib
           pkgs.gtk4
-          astal.packages.${system}.io
           astal.packages.${system}.astal4
         ];
       in {
