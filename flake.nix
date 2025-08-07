@@ -1,5 +1,5 @@
 {
-  description = "Flake for my widgets";
+  description = "OTTW - Over The Top Widgets, made with Astal";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
@@ -32,7 +32,7 @@
         ];
       in {
         packages.default = pkgs.stdenv.mkDerivation {
-          pname = "tommWidgets";
+          pname = "ottw";
           version = "0.1";
           src = ./.;
 

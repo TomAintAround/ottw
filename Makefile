@@ -1,4 +1,5 @@
 CC := gcc
+BIN_NAME := ottw
 PKG_CONFIG := pkg-config
 PKG_CFLAGS := $(shell $(PKG_CONFIG) --cflags glib-2.0 gtk4 astal-4-4.0)
 PKG_LDFLAGS := $(shell $(PKG_CONFIG) --libs glib-2.0 gtk4 astal-4-4.0)
@@ -10,7 +11,7 @@ BUILD_DIR := build
 
 SRC := $(wildcard $(SRC_DIR)/*.c)
 OBJ := $(patsubst $(SRC_DIR)/%.c,$(BUILD_DIR)/%.o,$(SRC))
-BIN := $(BUILD_DIR)/widget
+BIN := $(BUILD_DIR)/$(BIN_NAME)
 
 all: $(BIN)
 
