@@ -16,7 +16,6 @@
         pkgs = nixpkgs.legacyPackages.${system};
 
         nativeBuildInputs = with pkgs; [
-          gobject-introspection
           pkg-config
         ];
 
