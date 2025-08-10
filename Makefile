@@ -15,6 +15,9 @@ BIN := $(BUILD_DIR)/$(BIN_NAME)
 
 all: $(BIN)
 
+debug: CFLAGS += -g
+debug: clean all
+
 $(BIN): $(OBJ)
 	@mkdir -p $(dir $@)
 	$(CC) $(OBJ) -o $@ $(LDFLAGS)
@@ -26,4 +29,4 @@ $(BUILD_DIR)/%.o: $(SRC_DIR)/%.c
 clean:
 	rm -rf $(BUILD_DIR)
 
-.PHONY: all clean
+.PHONY: all clean debug
