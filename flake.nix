@@ -1,20 +1,15 @@
 {
-  description = "OTTW - Over The Top Widgets, made with Astal";
+  description = "OTTW - Over The Top Widgets, made with GTK 4";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     flake-utils.url = "github:numtide/flake-utils";
-    astal = {
-      url = "github:aylur/astal";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs = {
     self,
     nixpkgs,
     flake-utils,
-    astal,
   }:
     flake-utils.lib.eachDefaultSystem (
       system: let
@@ -25,10 +20,8 @@
           pkg-config
         ];
 
-        buildInputs = [
-          pkgs.glib
-          pkgs.gtk4
-          astal.packages.${system}.astal4
+        buildInputs = with pkgs; [
+          gtk4
         ];
       in {
         packages.default = pkgs.stdenv.mkDerivation {
@@ -53,8 +46,8 @@
           inherit buildInputs nativeBuildInputs;
 
           shellHook = ''
-            export CFLAGS="$(pkg-config --cflags glib-2.0 gtk4 astal-4-4.0)"
-            export LDFLAGS="$(pkg-config --libs glib-2.0 gtk4 astal-4-4.0)"
+            export CFLAGS="$(pkg-config --cflags gtk4)"
+            export LDFLAGS="$(pkg-config --libs gtk4)"
           '';
         };
       }

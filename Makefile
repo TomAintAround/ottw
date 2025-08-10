@@ -1,8 +1,8 @@
 CC := gcc
 BIN_NAME := ottw
 PKG_CONFIG := pkg-config
-PKG_CFLAGS := $(shell $(PKG_CONFIG) --cflags glib-2.0 gtk4 astal-4-4.0)
-PKG_LDFLAGS := $(shell $(PKG_CONFIG) --libs glib-2.0 gtk4 astal-4-4.0)
+PKG_CFLAGS := $(shell $(PKG_CONFIG) --cflags gtk4)
+PKG_LDFLAGS := $(shell $(PKG_CONFIG) --libs gtk4)
 CFLAGS := -Wall -Wextra -std=c11 $(PKG_CFLAGS)
 LDFLAGS := $(PKG_LDFLAGS)
 
