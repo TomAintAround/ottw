@@ -23,7 +23,7 @@
           gtk4
         ];
       in {
-        packages.default = pkgs.stdenv.mkDerivation {
+        packages.default = pkgs.stdenv.mkDerivation rec {
           pname = "ottw";
           version = "0.1";
           src = ./.;
@@ -31,13 +31,12 @@
           inherit nativeBuildInputs buildInputs;
 
           buildPhase = ''
-            mkdir -p build
             make
           '';
 
           installPhase = ''
             mkdir -p $out/bin
-            cp build/widget $out/bin
+            cp build/${pname} $out/bin
           '';
         };
 
