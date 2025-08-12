@@ -48,6 +48,8 @@
             export LDFLAGS="$(pkg-config --libs gtk4)"
           '';
         };
+
+        formatter = pkgs.callPackage ./nix/formatter.nix {};
       }
     );
 }
