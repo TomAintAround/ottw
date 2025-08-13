@@ -38,7 +38,7 @@
 
         devShells.default = pkgs.mkShell {
           name = "ottwShell";
-          inputsFrom = [self.packages.default];
+          inputsFrom = [self.packages.${system}.default];
           packages = with pkgs; [
             clang-tools
             vscode-css-languageserver
