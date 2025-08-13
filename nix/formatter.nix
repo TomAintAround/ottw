@@ -26,7 +26,7 @@ writeShellApplication {
       elif [ -d "$1" ]; then
         fd '.*\.(css|scss|yaml)' "$1" -x prettier --write -- {}
       else
-        prettier --check "$1"
+        prettier --write -- "$1"
       fi
     }
 
