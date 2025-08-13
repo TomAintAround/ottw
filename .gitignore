@@ -3,6 +3,7 @@
 build
 .envrc
 compile_commands.json
+src/gresource.c
 
 # Prerequisites
 *.d

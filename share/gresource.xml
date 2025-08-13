@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gresources>
+  <gresource prefix="/com/github/tomm/ottw">
+    <file preprocess="xml-stripblanks">share/xml/bar.ui</file>
+    <file>share/css/bar.css</file>
+  </gresource>
+</gresources>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <object id="window" class="GtkWindow">
+    <property name="title">OTTW Bar</property>
+    <child>
+      <object id="box" class="GtkBox">
+        <child>
+          <object id="label" class="GtkLabel">
+            <property name="css-classes">label</property>
+            <property name="label">This is a bar (don't laugh)</property>
+          </object>
+        </child>
+      </object>
+    </child>
+  </object>
+</interface>
