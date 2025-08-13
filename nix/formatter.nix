@@ -6,6 +6,7 @@
   clang-tools,
   libxml2,
   prettier,
+  cmake-format,
   fd,
 }:
 writeShellApplication {
@@ -18,8 +19,19 @@ writeShellApplication {
     fd
     libxml2
     prettier
+    cmake-format
   ];
   text = ''
+    cmakeFormat() {
+      if [ "$*" = 0 ] || [ "$1" = "." ]; then
+        fd 'CMakeLists.txt' . -x cmake-format {} -o {}
+      elif [ -d "$1" ]; then
+        fd 'CMakeLists.txt' "$1" -x cmake-format {} -o {}
+      else
+        cmake-format "$1" -o "$1"
+      fi
+    }
+
     prettierFormat() {
       if [ "$*" = 0 ] || [ "$1" = "." ]; then
         fd '.*\.(css|scss|yaml)' . -x prettier --write -- {}
@@ -79,10 +91,11 @@ writeShellApplication {
           cFormat "$i"
           ;;
         *)
-          prettierFormat "$i"
-          xmlFormat "$i"
-          nixFormat "$i"
-          cppFormat "$i"
+          cmakeFormat "$i" 2>/dev/null
+          prettierFormat "$i" 2>/dev/null
+          xmlFormat "$i" 2>/dev/null
+          nixFormat "$i" 2>/dev/null
+          cppFormat "$i" 2>/dev/null
           ;;
       esac
     done

@@ -16,25 +16,8 @@
       system: let
         pkgs = nixpkgs.legacyPackages.${system};
       in {
-        packages.default = pkgs.stdenv.mkDerivation rec {
-          pname = "ottw";
-          version = "0.1";
-          src = ./.;
-
-          nativeBuildInputs = with pkgs; [
-            pkg-config
-          ];
-
-          buildInputs = with pkgs; [
-            gtk4
-            libxml2 # required to compress .ui files
-          ];
-
-          installPhase = ''
-            mkdir -p $out/bin
-            cp build/${pname} $out/bin
-          '';
-        };
+        #TODO: Finish this
+        packages.default = pkgs.callPackage ./nix/package.nix {version = "0.1";};
 
         devShells.default = pkgs.mkShell {
           name = "ottwShell";
@@ -44,6 +27,7 @@
             vscode-css-languageserver
             yaml-language-server
             nixd
+            cmake-language-server
           ];
         };
 

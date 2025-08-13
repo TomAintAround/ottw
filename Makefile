@@ -1,32 +1,18 @@
-CC := gcc
-BIN_NAME := ottw
-PKG_CONFIG := pkg-config
-PKG_CFLAGS := $(shell $(PKG_CONFIG) --cflags gtk4)
-PKG_LDFLAGS := $(shell $(PKG_CONFIG) --libs gtk4)
-CFLAGS := -Wall -Wextra -std=c11 $(PKG_CFLAGS)
-LDFLAGS := $(PKG_LDFLAGS)
+all:
+	$(MAKE) clean
+	$(MAKE) release
 
-SRC_DIR := src
-BUILD_DIR := build
+release:
+	cmake -S . -B ./build
+	cmake --build ./build
 
-SRC := $(wildcard $(SRC_DIR)/*.c)
-OBJ := $(patsubst $(SRC_DIR)/%.c,$(BUILD_DIR)/%.o,$(SRC))
-BIN := $(BUILD_DIR)/$(BIN_NAME)
+debug:
+	cmake -DCMAKE_BUILD_TYPE:STRING=Debug -S . -B ./build
+	cmake --build ./build
 
-all: $(BIN)
-
-debug: CFLAGS += -g
-debug: clean all
-
-$(BIN): $(OBJ)
-	@mkdir -p $(dir $@)
-	$(CC) $(OBJ) -o $@ $(LDFLAGS)
-
-$(BUILD_DIR)/%.o: $(SRC_DIR)/%.c
-	@mkdir -p $(dir $@)
-	$(CC) $(CFLAGS) -c $< -o $@
+install:
+	cmake --install ./build
 
 clean:
-	rm -rf $(BUILD_DIR)
-
-.PHONY: all clean debug
+	rm -rf build/
+	rm -rf src/gresource.c
