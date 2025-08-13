@@ -1,4 +1,4 @@
-WarningsAsErrors: '*'
+WarningsAsErrors: "*"
 HeaderFilterRegex: '.*\.h'
 FormatStyle: file
 Checks: >
