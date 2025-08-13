@@ -7,6 +7,7 @@
   };
 
   outputs = {
+    self,
     nixpkgs,
     flake-utils,
     ...
@@ -14,33 +15,20 @@
     flake-utils.lib.eachDefaultSystem (
       system: let
         pkgs = nixpkgs.legacyPackages.${system};
-
-        nativeBuildInputs = with pkgs; [
-          pkg-config
-        ];
-
-        buildInputs = with pkgs; [
-          gtk4
-          libxml2 # required to compress .ui files
-        ];
-
-        devBuildInputs = with pkgs; [
-          clang-tools
-          vscode-css-languageserver
-          yaml-language-server
-          nixd
-        ];
       in {
         packages.default = pkgs.stdenv.mkDerivation rec {
           pname = "ottw";
           version = "0.1";
           src = ./.;
 
-          inherit nativeBuildInputs buildInputs;
+          nativeBuildInputs = with pkgs; [
+            pkg-config
+          ];
 
-          buildPhase = ''
-            make
-          '';
+          buildInputs = with pkgs; [
+            gtk4
+            libxml2 # required to compress .ui files
+          ];
 
           installPhase = ''
             mkdir -p $out/bin
@@ -50,8 +38,13 @@
 
         devShells.default = pkgs.mkShell {
           name = "ottwShell";
-          buildInputs = buildInputs ++ devBuildInputs;
-          inherit nativeBuildInputs;
+          inputsFrom = [self.packages.default];
+          packages = with pkgs; [
+            clang-tools
+            vscode-css-languageserver
+            yaml-language-server
+            nixd
+          ];
         };
 
         formatter = pkgs.callPackage ./nix/formatter.nix {};
