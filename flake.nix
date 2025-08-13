@@ -21,6 +21,14 @@
 
         buildInputs = with pkgs; [
           gtk4
+          libxml2 # required to compress .ui files
+        ];
+
+        devBuildInputs = with pkgs; [
+          clang-tools
+          vscode-css-languageserver
+          yaml-language-server
+          nixd
         ];
       in {
         packages.default = pkgs.stdenv.mkDerivation rec {
@@ -41,12 +49,9 @@
         };
 
         devShells.default = pkgs.mkShell {
-          inherit buildInputs nativeBuildInputs;
-
-          shellHook = ''
-            export CFLAGS="$(pkg-config --cflags gtk4)"
-            export LDFLAGS="$(pkg-config --libs gtk4)"
-          '';
+          name = "ottwShell";
+          buildInputs = buildInputs ++ devBuildInputs;
+          inherit nativeBuildInputs;
         };
 
         formatter = pkgs.callPackage ./nix/formatter.nix {};
