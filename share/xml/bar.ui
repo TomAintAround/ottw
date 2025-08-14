@@ -3,11 +3,24 @@
   <object id="window" class="GtkWindow">
     <property name="title">OTTW Bar</property>
     <child>
-      <object id="box" class="GtkBox">
-        <child>
-          <object id="label" class="GtkLabel">
+      <object id="CenterBox" class="GtkCenterBox">
+        <property name="orientation">GTK_ORIENTATION_VERTICAL</property>
+        <child type="start">
+          <object id="labelTop" class="GtkLabel">
             <property name="css-classes">label</property>
-            <property name="label">This is a bar (don't laugh)</property>
+            <property name="label">This is a top label</property>
+          </object>
+        </child>
+        <child type="center">
+          <object id="labelCenter" class="GtkLabel">
+            <property name="css-classes">label</property>
+            <property name="label">This is a center label</property>
+          </object>
+        </child>
+        <child type="end">
+          <object id="labelBottom" class="GtkLabel">
+            <property name="css-classes">label</property>
+            <property name="label">This is a bottom label</property>
           </object>
         </child>
       </object>
