@@ -7,7 +7,8 @@
  * @brief Open the bar
  *
  * @param Gtk application
+ * @param Monitor
  */
-void bar(GtkApplication* app);
+void bar(GtkApplication* app, GdkMonitor* monitor);
 
 #endif

@@ -5,6 +5,7 @@
   cmake,
   pkg-config,
   gtk4,
+  gtk4-layer-shell,
   libxml2,
 }:
 stdenv.mkDerivation {
@@ -19,6 +20,7 @@ stdenv.mkDerivation {
 
   buildInputs = [
     gtk4
+    gtk4-layer-shell
     libxml2 # required to compress .ui files
   ];
 

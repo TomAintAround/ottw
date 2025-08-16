@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
   <object id="window" class="GtkWindow">
+    <property name="decorated">false</property>
+    <property name="deletable">false</property>
+    <property name="resizable">true</property>
     <property name="title">OTTW Bar</property>
     <child>
       <object id="CenterBox" class="GtkCenterBox">
