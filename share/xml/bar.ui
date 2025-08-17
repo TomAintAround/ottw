@@ -21,9 +21,19 @@
           </object>
         </child>
         <child type="end">
-          <object id="labelBottom" class="GtkLabel">
+          <object id="boxBottom" class="GtkBox">
+            <property name="orientation">GTK_ORIENTATION_VERTICAL</property>
             <property name="css-classes">label</property>
-            <property name="label">This is a bottom label</property>
+            <child>
+              <object id="time" class="GtkLabel">
+                <property name="css-classes">label</property>
+              </object>
+            </child>
+            <child>
+              <object id="date" class="GtkLabel">
+                <property name="css-classes">label</property>
+              </object>
+            </child>
           </object>
         </child>
       </object>
