@@ -12,13 +12,13 @@
         <child type="start">
           <object id="labelTop" class="GtkLabel">
             <property name="css-classes">label</property>
-            <property name="label">This is a top label</property>
+            <property name="label">Top</property>
           </object>
         </child>
         <child type="center">
           <object id="labelCenter" class="GtkLabel">
             <property name="css-classes">label</property>
-            <property name="label">This is a center label</property>
+            <property name="label">Cen</property>
           </object>
         </child>
         <child type="end">
