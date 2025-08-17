@@ -5,6 +5,7 @@
     <property name="deletable">false</property>
     <property name="resizable">true</property>
     <property name="title">OTTW Bar</property>
+    <property name="css-classes">Bar</property>
     <child>
       <object id="CenterBox" class="GtkCenterBox">
         <property name="orientation">GTK_ORIENTATION_VERTICAL</property>

@@ -1,9 +1,11 @@
 .cache
 .direnv
+.sass-cache
 build
 .envrc
 compile_commands.json
 src/gresource.c
+share/css/**/*.css*
 
 # Prerequisites
 *.d

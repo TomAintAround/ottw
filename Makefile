@@ -16,3 +16,4 @@ install:
 clean:
 	rm -rf build/
 	rm -rf src/gresource.c
+	rm -rf share/css/*.css*

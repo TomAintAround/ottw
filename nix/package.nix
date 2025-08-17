@@ -7,6 +7,7 @@
   gtk4,
   gtk4-layer-shell,
   libxml2,
+  sass,
 }:
 stdenv.mkDerivation {
   pname = "ottw";
@@ -16,6 +17,7 @@ stdenv.mkDerivation {
   nativeBuildInputs = [
     cmake
     pkg-config
+    sass
   ];
 
   buildInputs = [

@@ -7,6 +7,7 @@ project(
 
 find_package(PkgConfig REQUIRED)
 find_program(GLIB_COMPILE_RESOURCES NAMES glib-compile-resources REQUIRED)
+find_program(SASS NAMES sass REQUIRED)
 
 set(CMAKE_CXX_STANDARD 26)
 set(CXX_STANDARD_REQUIRED ON)
@@ -54,10 +55,24 @@ string(REPLACE " " "\n" CFLAGS "${CMAKE_C_FLAGS}")
 message(STATUS "LDFlags: \n-L${LDFLAGS} \n-l${LFLAGS}")
 message(STATUS "CFlags: \n${CFLAGS}")
 
-message(STATUS "Generating gresource.c")
+set(CSS_DIR "${CMAKE_SOURCE_DIR}/share/css")
+file(GLOB SCSS_FILES "${CSS_DIR}/*.scss")
+foreach(SCSS_FILE ${SCSS_FILES})
+  get_filename_component(FILE_NAME ${SCSS_FILE} NAME_WE)
+  set(CSS_FILE "${CSS_DIR}/${FILE_NAME}.css")
+  add_custom_command(
+    OUTPUT ${CSS_FILE}
+    WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+    COMMAND ${SASS} ARGS ${SCSS_FILE} ${CSS_FILE}
+    COMMENT "Compiling ${SCSS_FILE} to ${CSS_FILE}"
+    VERBATIM
+    MAIN_DEPENDENCY ${SCSS_FILE})
+  list(APPEND CSS_FILES ${CSS_FILE})
+endforeach()
+add_custom_target(CompileSCSS ALL DEPENDS ${CSS_FILES})
+
 set(GRESOURCE_XML ${CMAKE_SOURCE_DIR}/share/gresource.xml)
 set(GRESOURCE_C ${CMAKE_SOURCE_DIR}/src/gresource.c)
-
 add_custom_command(
   OUTPUT ${GRESOURCE_C}
   WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}

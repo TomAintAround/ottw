@@ -1,0 +1,7 @@
+$fg-color: #{"@theme_fg_color"};
+$bg-color: #{"@theme_bg_color"};
+
+.Bar {
+	background: $bg-color;
+	padding: 0.5em;
+}
