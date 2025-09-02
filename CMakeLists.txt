@@ -29,6 +29,7 @@ if(CMAKE_BUILD_TYPE MATCHES Debug)
 else()
   message(STATUS "Compile ottw normally")
   add_compile_options(-O3)
+  add_link_options(-s)
 endif()
 
 set(CMAKE_EXECUTABLE_ENABLE_EXPORTS TRUE)
