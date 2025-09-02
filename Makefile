@@ -13,7 +13,10 @@ debug:
 install:
 	cmake --install ./build
 
-clean:
-	rm -rf build/
+clean-resource:
 	rm -rf src/gresource.c
 	rm -rf share/css/*.css*
+
+clean:
+	rm -rf build/
+	$(MAKE) clean-resource
